@@ -21,20 +21,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: {
-            tableName: 'users',
-            schema: 'blogs-api-dev'
-          },
+          model: 'Users',
           key: 'id'
         },
       },
       published: {
         allowNull: false,
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
       },
       updated: {
         allowNull: false,
-        type: DataTypes.DATE,
+        type: Sequelize.DATE,
       }
     });
   },

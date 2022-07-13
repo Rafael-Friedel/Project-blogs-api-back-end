@@ -7,10 +7,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: {
-            tableName: 'blogPosts',
-            schema: 'blogs-api-dev'
-          },
+          model: 'BlogPosts',
           key: 'id'
         },
       },
@@ -18,10 +15,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: {
-            tableName: 'categories',
-            schema: 'blogs-api-dev'
-          },
+          model:'Categories',
           key: 'id'
         },
       },
