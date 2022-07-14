@@ -3,7 +3,7 @@ const express = require('express');
 require('express-async-errors');
 const userController = require('./controllers/userControllers');
 const handleError = require('./midleware');
-const myController = require('./services/myUser');
+const myUserController = require('./services/myUser');
 
 const app = express();
 
@@ -13,7 +13,9 @@ app.post('/login', userController.login);
 
 app.post('/user', userController.createUser);
 
-app.get('/user', myController.getAll);
+app.get('/user/:id', myUserController.getById);
+
+app.get('/user', myUserController.getAll);
 
 app.use(handleError);
 

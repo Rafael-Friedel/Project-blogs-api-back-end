@@ -2,6 +2,7 @@ const {
   throwConflictsError,
   throwInvalidError,
   throwUnauthorizedError,
+  throwNotFoundError,
 } = require('../utils');
 const { User } = require('../database/models');
 const { createToken, readToken } = require('./authService');
@@ -68,6 +69,13 @@ const userService = {
   async getAll() {
     const users = await User.findAll({ attributes: { exclude: ['password'] } });
     return users;
+  },
+  async getById(id) {
+    const user = await User.findByPk(id, {
+      attributes: { exclude: ['password'] },
+    });
+    if (!user) throwNotFoundError('User does not exist');
+    return user;
   },
 };
 
