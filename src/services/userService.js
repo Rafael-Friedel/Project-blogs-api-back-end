@@ -58,12 +58,16 @@ const userService = {
     return token;
   },
   async verifyToken(token) {
-    if (token) throwUnauthorizedError('Token not found');
+    if (!token) throwUnauthorizedError('Token not found');
     try {
       await readToken(token);
     } catch (err) {
       throwUnauthorizedError('Expired or invalid token');
     }
+  },
+  async getAll() {
+    const users = await User.findAll({ attributes: { exclude: ['password'] } });
+    return users;
   },
 };
 

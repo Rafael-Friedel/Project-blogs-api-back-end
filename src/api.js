@@ -3,6 +3,7 @@ const express = require('express');
 require('express-async-errors');
 const userController = require('./controllers/userControllers');
 const handleError = require('./midleware');
+const myController = require('./services/myUser');
 
 const app = express();
 
@@ -11,6 +12,8 @@ app.use(express.json());
 app.post('/login', userController.login);
 
 app.post('/user', userController.createUser);
+
+app.get('/user', myController.getAll);
 
 app.use(handleError);
 
