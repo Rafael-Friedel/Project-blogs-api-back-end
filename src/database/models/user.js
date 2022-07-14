@@ -1,14 +1,16 @@
 const User = (sequelize, DataTypes) => {
-    const User = sequelize.define("User", {
+  const User = sequelize.define(
+    "User",
+    {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
       },
       displayName: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       email: {
         allowNull: false,
@@ -17,16 +19,17 @@ const User = (sequelize, DataTypes) => {
       },
       password: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       image: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
-      
-    }, { timestamps: false });
-    
-    return User;
-  };
-  
-  module.exports = User;
+    },
+    { timestamps: false }
+  );
+
+  return User;
+};
+
+module.exports = User;
