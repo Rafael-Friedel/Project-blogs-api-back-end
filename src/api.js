@@ -3,7 +3,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const { User } = require('./database/models');
 
-const validEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+const regexEmail = /\S+@\S+\.\S+/;
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.post('/user', async (req, res) => {
         return res.status(400)
         .json({ message: '"displayName" length must be at least 8 characters long' });
     }
-    if (!validEmail.test(email)) {
+    if (!regexEmail.test(email)) {
         return res.status(400).json({ message: '"email" must be a valid email' });
     }
     if (password.lenght < 6) {
