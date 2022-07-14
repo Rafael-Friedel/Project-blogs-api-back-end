@@ -4,11 +4,11 @@
 //     throw err;
 //   };
   
-//   const throwUnauthorizedError = (message = 'Não autorizado') => {
-//     const err = new Error(message);
-//     err.code = 401;
-//     throw err;
-//   };
+  const throwUnauthorizedError = (message = 'Não autorizado') => {
+    const err = new Error(message);
+    err.code = 401;
+    throw err;
+  };
 
   const throwConflictsError = (message) => {
     const err = new Error(message);
@@ -25,4 +25,5 @@
   module.exports = {
     throwInvalidError,
     throwConflictsError,
+    throwUnauthorizedError,
   };
