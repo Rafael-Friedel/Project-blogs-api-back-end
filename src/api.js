@@ -19,6 +19,8 @@ app.get('/user', userController.getAll);
 
 app.post('/categories', categoryController.add);
 
+app.get('/categories', categoryController.getAll);
+
 app.use(handleError);
 
 // É importante exportar a constante `app`,
