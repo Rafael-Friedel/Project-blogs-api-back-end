@@ -15,6 +15,10 @@ const blogPostService = {
     });
     return newBlogPost;
   },
+  async getAll() {
+    const allPosts = await BlogPost.findAll();
+    return allPosts;
+  },
 };
 
 module.exports = blogPostService;

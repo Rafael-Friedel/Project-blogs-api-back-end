@@ -19,6 +19,22 @@ const blogPostController = {
 
     res.status(201).json(newBlog);
   },
+  async getAll(req, res) {
+    const token = req.headers.authorization;
+    await userService.verifyToken(token);
+    const allPosts = await blogPostService.getAll();
+    const response = await Promise.all(
+      allPosts.map(async (obj) => {
+        const newPost = { ...obj.dataValues };
+        const user = await userService.getById(obj.userId);
+        const categories = await categoryService.getById(obj.id);
+        newPost.user = user;
+        newPost.categories = categories;
+        return newPost;
+      }),
+    );
+    res.status(200).json(response);
+  },
 };
 
 module.exports = blogPostController;

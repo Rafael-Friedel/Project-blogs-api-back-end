@@ -22,6 +22,10 @@ const categoryService = {
       }),
     );
   },
+  async getById(id) {
+    const categories = await Category.findAll({ where: id });
+    return categories;
+  },
 };
 
 module.exports = categoryService;
