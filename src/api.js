@@ -4,6 +4,7 @@ require('express-async-errors');
 const userController = require('./controllers/userControllers');
 const handleError = require('./midleware');
 const categoryController = require('./controllers/categoryController');
+const blogPostController = require('./controllers/blogPostController');
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.get('/user', userController.getAll);
 app.post('/categories', categoryController.add);
 
 app.get('/categories', categoryController.getAll);
+
+app.post('/post', blogPostController.add);
 
 app.use(handleError);
 

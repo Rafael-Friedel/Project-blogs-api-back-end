@@ -61,7 +61,8 @@ const userService = {
   async verifyToken(token) {
     if (!token) throwUnauthorizedError('Token not found');
     try {
-      await readToken(token);
+      const userId = await readToken(token);
+      return userId;
     } catch (err) {
       throwUnauthorizedError('Expired or invalid token');
     }
