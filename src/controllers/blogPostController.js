@@ -8,11 +8,15 @@ const blogPostController = {
     const token = req.headers.authorization;
     const userId = await userService.verifyToken(token);
     const { title, content, categoryIds } = req.body;
-    console.log(categoryIds);
-    await categoryService.getByIdIsValid(categoryIds);
-    const newBlog = await blogPostService.create(title, content, userId);
+    const newBlog = await blogPostService.create(
+      title,
+      content,
+      userId,
+      categoryIds,
+    );
     await Promise.all(
       categoryIds.map(async (id) => {
+        await categoryService.getByIdIsValid(id);
         await postCategoriesService.create(newBlog.id, id);
       }),
     );

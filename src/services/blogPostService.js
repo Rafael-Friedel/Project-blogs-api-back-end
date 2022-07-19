@@ -2,8 +2,8 @@ const { BlogPost } = require('../database/models');
 const { throwInvalidError } = require('../utils');
 
 const blogPostService = {
-  async create(title, content, userId) {
-    if (!title || !content) {
+  async create(title, content, userId, categoryIds) {
+    if (!title || !content || !categoryIds) {
       throwInvalidError('Some required fields are missing');
     }
     const newBlogPost = await BlogPost.create({

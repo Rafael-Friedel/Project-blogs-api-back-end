@@ -11,16 +11,9 @@ const categoryService = {
     const categories = await Category.findAll();
     return categories;
   },
-  async getByIdIsValid(array) {
-    if (!array.length) {
-      throwInvalidError('Some required fields are missing');
-    }
-    await Promise.all(
-      array.map(async (id) => {
-        const category = await Category.findByPk(id);
-        if (!category) throwInvalidError('"categoryIds" not found');
-      }),
-    );
+  async getByIdIsValid(id) {
+    const category = await Category.findByPk(id);
+    if (!category) throwInvalidError('"categoryIds" not found');
   },
   async getById(id) {
     const categories = await Category.findAll({ where: id });
